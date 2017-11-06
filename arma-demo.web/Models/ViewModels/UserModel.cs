@@ -13,5 +13,6 @@ namespace arma_demo.web.Models.ViewModels
         public string displayName { get; set; }
         public string theme { get; set; }
         public string sidepanel { get; set; }
+        public IEnumerable<NoteModel> notes { get; set; }
     }
 }

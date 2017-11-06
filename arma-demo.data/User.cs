@@ -12,5 +12,7 @@ namespace arma_demo.data
         public string DisplayName { get; set; }
         public string Theme { get; set; }
         public string Sidepanel { get; set; }
+
+        public virtual ICollection<Note> Notes { get; set; }
     }
 }
