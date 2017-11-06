@@ -1,0 +1,93 @@
+div[class*="light-"] .token.comment {
+    color: #008000;
+}
+
+div[class*="light-"] .token.class-name {
+    color: #267f99;
+}
+
+div[class*="light-"] .token.number {
+    color: #09885a;
+}
+
+div[class*="light-"] .token.regex {
+    color: #811f3f;
+}
+
+div[class*="light-"] .token.tag {
+    color: #800000;
+}
+
+div[class*="light-"] .token.selector {
+    color: #800000;
+}
+
+div[class*="light-"] .token.inserted {
+    color: #09885a;
+}
+
+div[class*="light-"] .token.deleted {
+    color: #a31515;
+}
+
+div[class*="light-"] .token.punctuation {
+    color: #000000;
+}
+
+div[class*="light-"] .token.string,
+div[class*="light-"] .language-css .token.string,
+div[class*="light-"] .style .token.string,
+div[class*="light-"] .token.attr-value {
+    color: #a31515;
+}
+
+div[class*="light-"] .token.attr-name,
+div[class*="light-"] .token.char,
+div[class*="light-"] .token.builtin,
+div[class*="light-"] .token.property,
+div[class*="light-"] .token.variable,
+div[class*="light-"] .token.token.atrule,
+div[class*="light-"] .token.important {
+    color: #ff0000;
+}
+
+div[class*="light-"] .token.keyword,
+div[class*="light-"] .token.boolean,
+div[class*="light-"] .token.constant,
+div[class*="light-"] .token.symbol {
+    color: #0000ff;
+}
+
+div[class*="light-"] .token.operator,
+div[class*="light-"] .token.entity {
+    color: #09885a;
+}
+
+div[class*="light-"] .token.prolog,
+div[class*="light-"] .token.doctype,
+div[class*="light-"] .token.cdata {
+    color: #008000;
+}
+
+div[class*="light-"] .token.url {
+    color: #0451a5;
+}
+
+div[class*="light-"] .token.function {
+    color: #795e26;
+}
+
+div[class*="light-"] pre,
+div[class*="light-"] pre code {
+    background-color: #ffffffff;
+}
+
+div[class*="light-"] .code-container {
+    background-color: #ffffffff;
+    overflow: auto;
+    margin: 0;
+}
+
+div[class*="light-"] .code-container code {
+    color: #000000;
+}

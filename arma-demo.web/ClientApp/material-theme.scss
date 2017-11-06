@@ -1,0 +1,194 @@
+@import 'material-snacker.scss';
+@import 'material-prism.scss';
+@import 'material-prism-dark.scss';
+@import 'material-prism-light.scss';
+
+/*-- Properties --*/
+$green: mat-palette($mat-green, A400);
+$light-blue: mat-palette($mat-light-blue, A400);
+$red: mat-palette($mat-red);
+$blue: mat-palette($mat-deep-orange);
+$red-warn: mat-palette($mat-orange, A700);
+$orange: mat-palette($mat-orange, A700);
+$yellow: mat-palette($mat-yellow);
+
+$green-color: map-get($mat-green, A400);
+$light-blue-color: map-get($mat-light-blue, A400);
+$red-color: map-get($mat-red, 500);
+$blue-color: map-get($blue, 500);
+$orange-color: map-get($orange, A700);
+$yellow-color: map-get($yellow, 500);
+$light-color: #e1e1e1;
+
+/*-- Global Styling --*/
+$default-theme: mat-light-theme($green, $light-blue);
+@include angular-material-theme($default-theme);
+
+html, body, app, .app-frame {
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.app-body {
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.app-panel {
+    overflow: auto;
+}
+
+.mat-typography h1,
+.mat-typography h2,
+.mat-typography h3,
+.mat-typography h4,
+.mat-typography h5,
+.mat-typography h6,
+.mat-typography p,
+mat-card.mat-card,
+p.mat-caption,
+mat-input-container,
+mat-select {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.code-container {
+    padding-left: 15px;
+}
+
+mat-card.mat-card {
+    margin-bottom: 20px;
+}
+
+code.snippet,
+a.link,
+.active.active div.mat-list-item-content,
+.mat-option.mat-selected.map-primary,
+.mat-primary .mat-option.mat-selected {
+    color: $green-color;
+}
+
+a.link:visited {
+    color: $light-blue-color;
+}
+
+/*-- Material Component Changes --*/
+div.mat-paginator-page-size .mat-select {
+    padding: 0;
+}
+
+div.cdk-overlay-container {
+    z-index: 9999;
+}
+
+mat-tooltip-component div.mat-tooltip {
+    background-color: #e3e3e3!important;
+}
+
+/*-- Theming --*/
+.light-green {
+    $default-theme: mat-light-theme($green, $light-blue);
+    @include angular-material-theme($default-theme);
+}
+
+.dark-green {
+    color: $light-color;
+    $default-theme: mat-dark-theme($green, $light-blue);
+    @include angular-material-theme($default-theme);
+}
+
+div[class*="-green"] code.snippet,
+div[class*="-green"] a.link,
+div[class*="-green"] .active.active div.mat-list-item-content,
+div[class*="-green"] .mat-option.mat-selected.map-primary,
+div[class*="-green"] .mat-primary .mat-option.mat-selected {
+    color: $green-color;
+}
+
+div[class*="-green"] a.link:visited {
+    color: $light-blue-color;
+}
+
+.light-red {
+    $default-theme: mat-light-theme($red, $blue, $red-warn);
+    @include angular-material-theme($default-theme);
+}
+
+.dark-red {
+    color: $light-color;
+    $default-theme: mat-dark-theme($red, $blue, $red-warn);
+    @include angular-material-theme($default-theme);
+}
+
+div[class*="-red"] code.snippet,
+div[class*="-red"] a.link,
+div[class*="-red"] .active.active div.mat-list-item-content,
+div[class*="-red"] .mat-option.mat-selected.map-primary,
+div[class*="-red"] .mat-primary .mat-option.mat-selected {
+    color: $red-color;
+}
+
+div[class*="-red"] a.link:visited {
+    color: $blue-color;
+}
+
+.light-blue {
+    $default-theme: mat-light-theme($light-blue, $orange);
+    @include angular-material-theme($default-theme);
+}
+
+.dark-blue {
+    color: $light-color;
+    $default-theme: mat-dark-theme($light-blue, $yellow);
+    @include angular-material-theme($default-theme);
+}
+
+div[class*="-blue"] code.snippet,
+div[class*="-blue"] a.link,
+div[class*="-blue"] .active.active div.mat-list-item-content,
+div[class*="-blue"] .mat-option.mat-selected.map-primary,
+div[class*="-blue"] .mat-primary .mat-option.mat-selected {
+    color: $light-blue-color;
+}
+
+.light-blue a.link:visited {
+    color: $orange-color;
+}
+
+.dark-blue a.link:visited {
+    color: $yellow-color;
+}
+
+.default sidepanel mat-nav-list.mat-nav-list,
+.light-green sidepanel mat-nav-list.mat-nav-list,
+.light-red sidepanel mat-nav-list.mat-nav-list,
+.light-blue sidepanel mat-nav-list.mat-nav-list {
+    background-color: #eee;
+}
+
+div[class*="light-"] .contrast,
+div[class*="light-"] sidepanel mat-nav-list.mat-nav-list {
+    background-color: #eee;
+}
+
+div[class*="light-"] .contrast-stacked,
+div[class*="light-"] mat-paginator.mat-paginator {
+    background-color: #fafafa;
+}
+
+div[class*="dark-"] .contrast {
+    background-color: #555;
+}
+
+div[class*="dark-"] sidepanel mat-nav-list.mat-nav-list {
+    background-color: #212121;
+}
+
+div[class*="dark-"] .contrast-stacked {
+    background-color: #303030;
+}

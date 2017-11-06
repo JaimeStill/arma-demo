@@ -1,0 +1,5 @@
+<mat-nav-list [@slide]="sidepanel.state | async">
+    <a mat-list-item routerLink="/home" routerLinkActive="active" [@slide]="state">
+        <mat-icon>home</mat-icon> <span [@reveal]="state">Home</span>
+    </a>
+</mat-nav-list>

@@ -1,0 +1,21 @@
+<div class="mat-typography app-frame" fxLayout="column" [ngClass]="theme.activeTheme.value.name">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidepanel.toggleState()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="toolbar-header">Webstack</span>
+        <span fxFlex></span>
+        <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+            <mat-icon>color_lens</mat-icon>
+        </button>
+        <mat-menu #themeMenu="matMenu">
+            <button mat-menu-item *ngFor="let t of theme.themes" (click)="theme.setTheme(t)">{{t.display}}</button>
+        </mat-menu>
+    </mat-toolbar>
+    <div class="app-body mat-app-background" fxFlex fxFill fxLayout="row" fxLayoutAlign="start stretch">
+        <sidepanel></sidepanel>
+        <div fxFlex class="app-panel">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

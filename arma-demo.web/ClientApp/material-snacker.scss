@@ -1,0 +1,86 @@
+@import '~@angular/material/_theming.scss';
+@include mat-core();
+
+snack-bar-container.mat-snack-bar-container.snacker {
+    background-color: #3e3e3e !important;
+}
+
+simple-snack-bar.mat-simple-snackbar button.mat-simple-snackbar-action {
+    color: #e1e1e1;
+}
+
+.snacker-red simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-red, 500);
+}
+
+.snacker-pink simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-pink, A400);
+}
+
+.snacker-purple simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-purple, A400);
+}
+
+.snacker-deep-purple simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-deep-purple, A400);
+}
+
+.snacker-indigo simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-indigo, A400);
+}
+
+.snacker-blue simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-blue, 500);
+}
+
+.snacker-light-blue simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-light-blue, A400);
+}
+
+.snacker-cyan simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-cyan, A400);
+}
+
+.snacker-teal simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-teal, A400);
+}
+
+.snacker-green simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-green, A400);
+}
+
+.snacker-light-green simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-light-green, A400);
+}
+
+.snacker-lime simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-lime, A400);
+}
+
+.snacker-yellow simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-yellow, A400);
+}
+
+.snacker-amber simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-amber, A400);
+}
+
+.snacker-orange simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-orange, A400);
+}
+
+.snacker-deep-orange simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-deep-orange, A400);
+}
+
+.snacker-brown simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-brown, A400);
+}
+
+.snacker-grey simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-grey, A400);
+}
+
+.snacker-blue-grey simple-snack-bar.mat-simple-snackbar {
+    color: map-get($mat-blue-grey, A400);
+}
