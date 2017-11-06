@@ -7,7 +7,7 @@
 $green: mat-palette($mat-green, A400);
 $light-blue: mat-palette($mat-light-blue, A400);
 $red: mat-palette($mat-red);
-$blue: mat-palette($mat-deep-orange);
+$blue: mat-palette($mat-blue);
 $red-warn: mat-palette($mat-orange, A700);
 $orange: mat-palette($mat-orange, A700);
 $yellow: mat-palette($mat-yellow);
@@ -51,7 +51,7 @@ html, body, app, .app-frame {
 mat-card.mat-card,
 p.mat-caption,
 mat-input-container,
-mat-select {
+mat-form-field {
     margin-top: 10px;
     margin-left: 15px;
     margin-right: 15px;
@@ -88,6 +88,7 @@ div.cdk-overlay-container {
 
 mat-tooltip-component div.mat-tooltip {
     background-color: #e3e3e3!important;
+    color: #333;
 }
 
 /*-- Theming --*/
@@ -176,13 +177,25 @@ div[class*="light-"] sidepanel mat-nav-list.mat-nav-list {
     background-color: #eee;
 }
 
+div[class*="light-"] .contrast.hover:hover {
+    background-color: #ddd;
+}
+
 div[class*="light-"] .contrast-stacked,
 div[class*="light-"] mat-paginator.mat-paginator {
     background-color: #fafafa;
 }
 
+div[class*="light-"] .contrast-stacked.hover:hover {
+    background-color: #eaeaea;
+}
+
 div[class*="dark-"] .contrast {
     background-color: #555;
+}
+
+div[class*="dark-"] .contrast.hover:hover {
+    background-color: #666;
 }
 
 div[class*="dark-"] sidepanel mat-nav-list.mat-nav-list {
@@ -191,4 +204,8 @@ div[class*="dark-"] sidepanel mat-nav-list.mat-nav-list {
 
 div[class*="dark-"] .contrast-stacked {
     background-color: #303030;
+}
+
+div[class*="dark-"] .contrast-stacked.hover:hover {
+    background-color: #404040;
 }

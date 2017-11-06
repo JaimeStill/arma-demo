@@ -19,6 +19,10 @@ namespace arma_demo.web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddJsonFile("config.json", optional: true, reloadOnChange: true);
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

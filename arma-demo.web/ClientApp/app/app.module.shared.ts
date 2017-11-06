@@ -11,6 +11,9 @@ import { CoreApiService } from './services/core-api.service';
 import { SidepanelService } from './services/sidepanel.service';
 import { ThemeService } from './services/theme.service';
 import { SnackerService } from './services/snacker.service';
+import { IdentityService } from './services/identity.service';
+
+import { DisplayNameComponent } from './components/dialogs/display-name.component';
 
 import { PrismComponent } from './components/prism/prism.component';
 import { HostedCodeComponent } from './components/hosted-code/hosted-code.component';
@@ -21,11 +24,15 @@ import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
 
 @NgModule({
     declarations: [
+        DisplayNameComponent,
         PrismComponent,
         HostedCodeComponent,
         AppComponent,
         HomeComponent,
         SidepanelComponent
+    ],
+    entryComponents: [
+        DisplayNameComponent
     ],
     imports: [
         CommonModule,
@@ -43,6 +50,7 @@ import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
         SidepanelService,
         ThemeService,
         SnackerService,
+        IdentityService,
         { provide: RequestOptions, useClass: NoCacheRequestOptions }
     ]
 })

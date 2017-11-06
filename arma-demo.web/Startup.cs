@@ -10,15 +10,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using arma_demo.data;
+using Microsoft.EntityFrameworkCore;
+using arma_demo.web.Models.Extensions;
+using arma_demo.web.Models.Infrastructure;
 
 namespace arma_demo.web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
+
+        public IHostingEnvironment Environment { get; }
 
         public IConfiguration Configuration { get; }
 
@@ -26,11 +33,25 @@ namespace arma_demo.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Dev")));
+            }
+            else
+            {
+                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Azure")));
+            }
+
+            services.AddAzureAuthentication(Configuration, Environment);
+            services.AddScoped<UserManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,6 +66,8 @@ namespace arma_demo.web
             }
 
             app.UseStaticFiles();
+
+            app.UseUserMiddleware();
 
             app.UseExceptionHandler(errorApp => 
             {

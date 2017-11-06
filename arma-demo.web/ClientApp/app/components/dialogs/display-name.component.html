@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Update Display Name</h2>
+<mat-dialog-content>
+    <mat-input-container>
+        <input matInput placeholder="Display Name" [(ngModel)]="identity.newDisplayName">
+    </mat-input-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button color="warn" mat-button mat-dialog-close (click)="identity.resetNewDisplayName()">Cancel</button>
+    <button color="primary" mat-button mat-dialog-close (click)="identity.updateDisplayName()">Update</button>
+</mat-dialog-actions>

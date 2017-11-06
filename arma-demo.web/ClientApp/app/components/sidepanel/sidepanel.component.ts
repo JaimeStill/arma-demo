@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { SidepanelService } from '../../services/sidepanel.service';
+import { IdentityService } from '../../services/identity.service';
 
 @Component({
     selector: 'sidepanel',
@@ -55,9 +56,8 @@ import { SidepanelService } from '../../services/sidepanel.service';
 export class SidepanelComponent {
     state = 'min';
 
-    constructor(private sidepanel: SidepanelService) {
-        sidepanel.state.subscribe(s => {
-            this.state = s;
-        });
+    constructor(public sidepanel: SidepanelService, public identity: IdentityService) {
+        sidepanel.state.subscribe(s => this.state = s);
+        identity.user.subscribe(u => this.state = u.sidepanel);
     }
 }
