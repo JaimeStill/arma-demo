@@ -18,7 +18,10 @@
                     <button mat-menu-item (click)="promptDelete(n)">Delete</button>
                 </mat-menu>
             </section>
-            <p><strong>{{n.category.name}}</strong></p>
+            <section fxLayout="row" fxLayoutAlign="start center">
+            <p fxFlex><strong>{{n.category.name}}</strong></p>
+            <p><strong>{{n.user.displayName}}</strong></p>
+            </section>
             <p>{{n.value}}</p>
         </section>
     </div>

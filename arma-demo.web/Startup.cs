@@ -14,6 +14,7 @@ using arma_demo.data;
 using Microsoft.EntityFrameworkCore;
 using arma_demo.web.Models.Extensions;
 using arma_demo.web.Models.Infrastructure;
+using arma_demo.web.Hubs;
 
 namespace arma_demo.web
 {
@@ -33,6 +34,7 @@ namespace arma_demo.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSignalR();
 
             if (Environment.IsDevelopment())
             {
@@ -88,6 +90,11 @@ namespace arma_demo.web
                         }.ToString(), Encoding.UTF8);
                     }
                 });
+            });
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<Host>("host");
             });
 
             app.UseMvc(routes =>

@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <span [style.margin-right.px]="15">Messages</span>
+</mat-toolbar>
+<section class="info">
+    Connection:
+    <mat-icon [style.color]="'limegreen'" *ngIf="chat.connected">check_circle</mat-icon>
+    <mat-icon [style.color]="'red'" *ngIf="!(chat.connected)">remove_circle</mat-icon>
+</section>
+<section class="messages contrast">
+    <p *ngFor="let message of chat.messageQueue | async">{{message.user.displayName}} - {{message.timeSent | date: 'HH:mm:ss'}}: {{message.message}}</p>
+    <p *ngIf="chat.typing">Someone is typing...</p>
+</section>
+<section class="messenger">
+    <mat-form-field>
+        <input matInput #messager [(ngModel)]="chat.create.message" (keyup.enter)="chat.sendMessage()">
+    </mat-form-field>
+    <button mat-button color="primary" (click)="chat.sendMessage()">Send</button>
+</section>

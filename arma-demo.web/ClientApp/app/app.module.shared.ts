@@ -30,6 +30,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
 import { CategoriesComponent } from './components/category/categories.component';
 import { NotesComponent } from './components/note/notes.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { NotesComponent } from './components/note/notes.component';
         HomeComponent,
         SidepanelComponent,
         CategoriesComponent,
-        NotesComponent
+        NotesComponent,
+        ChatComponent
     ],
     entryComponents: [
         ConfirmDialogComponent,
@@ -62,6 +64,8 @@ import { NotesComponent } from './components/note/notes.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'notes', component: NotesComponent },
+            { path: 'chat', component: ChatComponent },
             { path: 'categories', component: CategoriesComponent },
             { path: '**', redirectTo: 'home' }
         ])

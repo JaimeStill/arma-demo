@@ -63,6 +63,12 @@ namespace arma_demo.web.Models.Extensions
             return user.CastToUserModel();
         }
 
+        public static async Task<UserModel> GetUser(this AppDbContext db, int id)
+        {
+            var user = await db.Users.FindAsync(id);
+            return user.CastToUserModel();
+        }
+
         public static async Task<User> CheckUserExists(this AppDbContext db, string identifier)
         {
             var user = await db.Users.FirstOrDefaultAsync(x => x.Identifier == identifier);
