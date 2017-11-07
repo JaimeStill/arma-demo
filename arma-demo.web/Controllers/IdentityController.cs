@@ -2,12 +2,14 @@
 using arma_demo.web.Models.Extensions;
 using arma_demo.web.Models.Infrastructure;
 using arma_demo.web.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace arma_demo.web.Controllers
 {
+    [Authorize(Policy = "Authenticated")]
     [Route("api/[controller]")]
     public class IdentityController : Controller
     {
@@ -20,6 +22,7 @@ namespace arma_demo.web.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         [HttpGet("[action]")]
         public bool CheckAuthentication()
         {

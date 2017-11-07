@@ -1,14 +1,14 @@
 <mat-nav-list [@slide]="sidepanel.state | async">
     <a mat-list-item routerLink="/home" routerLinkActive="active" [@slide]="state">
-        <mat-icon>home</mat-icon> <span [@reveal]="state">Home</span>
+        <mat-icon matTooltip="Home" matTooltipPosition="right" [matTooltipDisabled]="state !== 'thin'">home</mat-icon> <span [@reveal]="state">Home</span>
     </a>
-    <a mat-list-item routerLink="/notes" routerLinkActive="active" [@slide]="state">
-        <mat-icon>note</mat-icon> <span [@reveal]="state">Notes</span>
+    <a mat-list-item routerLink="/notes" routerLinkActive="active" [@slide]="state" *ngIf="identity.authenticated">
+        <mat-icon matTooltip="Notes" matTooltipPosition="right" [matTooltipDisabled]="state !== 'thin'">note</mat-icon> <span [@reveal]="state">Notes</span>
     </a>
-    <a mat-list-item routerLink="/chat" routerLinkActive="active" [@slide]="state">
-        <mat-icon>chat</mat-icon> <span [@reveal]="state">Chat</span>
+    <a mat-list-item routerLink="/chat" routerLinkActive="active" [@slide]="state" *ngIf="identity.authenticated">
+        <mat-icon matTooltip="Chat" matTooltipPosition="right" [matTooltipDisabled]="state !== 'thin'">chat</mat-icon> <span [@reveal]="state">Chat</span>
     </a>
-    <a mat-list-item routerLink="/categories" routerLinkActive="active" [@slide]="state">
-        <mat-icon>collections_bookmark</mat-icon> <span [@reveal]="state">Categories</span>
+    <a mat-list-item routerLink="/categories" routerLinkActive="active" [@slide]="state" *ngIf="identity.authenticated">
+        <mat-icon matTooltip="Categories" matTooltipPosition="right" [matTooltipDisabled]="state !== 'thin'">collections_bookmark</mat-icon> <span [@reveal]="state">Categories</span>
     </a>
 </mat-nav-list>

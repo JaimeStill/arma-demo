@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using arma_demo.web.Models.Extensions;
 using arma_demo.web.Models.Infrastructure;
 using arma_demo.web.Hubs;
+using arma_demo.web.Models.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace arma_demo.web
 {
@@ -47,6 +49,13 @@ namespace arma_demo.web
 
             services.AddAzureAuthentication(Configuration, Environment);
             services.AddScoped<UserManager>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Authenticated", policy => policy.Requirements.Add(new AuthorizationRequirement()));
+            });
+
+            services.AddScoped<IAuthorizationHandler, AuthHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

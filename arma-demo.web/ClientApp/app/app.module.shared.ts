@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppMaterialModule } from './app.module.material';
 
+import { AuthGuard } from './guards/auth-guard';
+
 import { NoCacheRequestOptions } from './services/no-cache-request-options';
 import { CoreApiService } from './services/core-api.service';
 import { SidepanelService } from './services/sidepanel.service';
@@ -64,9 +66,9 @@ import { ChatComponent } from './components/chat/chat.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'notes', component: NotesComponent },
-            { path: 'chat', component: ChatComponent },
-            { path: 'categories', component: CategoriesComponent },
+            { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
+            { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+            { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
             { path: '**', redirectTo: 'home' }
         ])
     ],
