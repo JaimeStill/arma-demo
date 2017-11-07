@@ -202,7 +202,8 @@ div[class*="dark-"] sidepanel mat-nav-list.mat-nav-list {
     background-color: #212121;
 }
 
-div[class*="dark-"] .contrast-stacked {
+div[class*="dark-"] .contrast-stacked,
+div[class*="dark-"] mat-paginator.mat-paginator {
     background-color: #303030;
 }
 

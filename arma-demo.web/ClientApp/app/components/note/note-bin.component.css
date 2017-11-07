@@ -1,0 +1,9 @@
+.card {
+    margin-bottom: 5px;
+    padding: 2px 8px;
+    flex: 1 1 auto;
+}
+
+.mat-dialog-content {
+    margin: 0;
+}

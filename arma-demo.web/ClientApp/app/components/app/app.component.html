@@ -4,6 +4,9 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span class="toolbar-header">Arma Webstack Demo</span>
+        <button mat-button (click)="startNewNote()">
+            <mat-icon>note_add</mat-icon> New Note
+        </button>
         <span fxFlex></span>
         <a mat-button href="/home/login" *ngIf="!identity.authenticated">Login</a>
         <a mat-button href="/home/logout" [matTooltip]="identity.user.value.email" *ngIf="identity.authenticated">{{identity.user.value.displayName}} - Logout</a>

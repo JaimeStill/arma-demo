@@ -18,7 +18,8 @@ namespace arma_demo.web.Models.Extensions
                 title = note.Title,
                 value = note.Value,
                 isDeleted = note.IsDeleted,
-                user = note.User.CastToUserModel()
+                user = note.User.CastToUserModel(),
+                category = note.Category.CastToCategoryModel()
             };
 
             return model;
@@ -31,7 +32,7 @@ namespace arma_demo.web.Models.Extensions
 
         public static IQueryable<Note> SetNoteIncludes(this DbSet<Note> notes)
         {
-            return notes.Include(x => x.User);
+            return notes.Include(x => x.User).Include(x => x.Category);
         }
 
         public static async Task<IEnumerable<NoteModel>> GetNotes(this AppDbContext db)
@@ -64,7 +65,7 @@ namespace arma_demo.web.Models.Extensions
             return note.CastToNoteModel();
         }
 
-        public static async Task CreateNote(this AppDbContext db, NoteModel model)
+        public static async Task<int> CreateNote(this AppDbContext db, NoteModel model)
         {
             if (await model.Validate())
             {
@@ -73,12 +74,17 @@ namespace arma_demo.web.Models.Extensions
                     Title = model.title,
                     Value = model.value,
                     UserId = model.user.id,
+                    CategoryId = model.category.id,
                     IsDeleted = false
                 };
 
                 await db.Notes.AddAsync(note);
                 await db.SaveChangesAsync();
+
+                return note.Id;
             }
+
+            return 0;
         }
 
         public static async Task UpdateNote(this AppDbContext db, NoteModel model)
@@ -89,6 +95,7 @@ namespace arma_demo.web.Models.Extensions
 
                 note.Title = model.title;
                 note.Value = model.value;
+                note.CategoryId = model.category.id;
 
                 await db.SaveChangesAsync();
             }

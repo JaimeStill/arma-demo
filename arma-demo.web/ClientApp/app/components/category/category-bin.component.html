@@ -1,0 +1,12 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>Category Recycle Bin</h2>
+    <div mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="4px" *ngIf="category.deletedCategories.value.length > 0">
+        <section class="mat-elevation-z4 contrast card" *ngFor="let c of category.deletedCategories | async" fxLayout="row" fxLayoutAlign="start center">
+            <p fxFlex>{{c.name}}</p>
+            <button mat-button color="primary" (click)="category.toggleCategoryDeleted(c)">Restore</button>
+        </section>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</div>

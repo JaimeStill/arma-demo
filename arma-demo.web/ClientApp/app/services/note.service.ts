@@ -5,19 +5,26 @@ import { CoreApiService } from './core-api.service';
 import { SnackerService } from './snacker.service';
 import { IdentityService } from './identity.service';
 import { Note } from '../models/note';
+import { IContainerService } from '../interfaces/icontainerservice';
+import { ContainerDataSource } from '../datasources/container.datasource';
 
 @Injectable()
-export class NoteService {
+export class NoteService implements IContainerService<Note> {
+    hasDataSource = new BehaviorSubject<boolean>(false);
+    dataSource = new BehaviorSubject<ContainerDataSource<Note>>(new ContainerDataSource<Note>());
     notes = new BehaviorSubject<Array<Note>>([]);
     userNotes = new BehaviorSubject<Array<Note>>([]);
     deletedNotes = new BehaviorSubject<Array<Note>>([]);
     userDeletedNotes = new BehaviorSubject<Array<Note>>([]);
-    create = new Note();
-    update = new Note();
+    active = new Note();
+    loading = false;
+
+    get data(): BehaviorSubject<Array<Note>> { return this.notes }
 
     constructor(public identity: IdentityService,
         public snacker: SnackerService,
-        public coreApi: CoreApiService) {
+        public coreApi: CoreApiService,
+        public http: Http) {
             identity.user.subscribe(user => {
                 if (user.id > 0) {
                     this.getUserNotes();
@@ -29,11 +36,31 @@ export class NoteService {
             });
         }
 
+    setContainerSource(dataSource: ContainerDataSource<Note>) {
+        this.dataSource.next(dataSource);
+        this.hasDataSource.next(true);
+    }
+
+    resetNote() {
+        this.active = new Note();
+    }
+
     getNotes() {
-        this.coreApi.get<Array<Note>>('/api/note/getNotes')
+        this.loading = true;
+        this.http.get('/api/note/getNotes')
+            .map(res => {
+                return res.json().map((n: Note) => Object.assign(new Note(), n));
+            })
+            .catch(this.coreApi.handleError)
             .subscribe(
-                notes => this.notes.next(notes),
-                err => this.snacker.sendErrorMessage(err)
+                notes => {
+                    this.notes.next(notes);
+                    this.loading = false;
+                },
+                err => {
+                    this.snacker.sendErrorMessage(err);
+                    this.loading = false;
+                }
             );
     }
 
@@ -72,18 +99,18 @@ export class NoteService {
     getNote(id: number) {
         this.coreApi.get<Note>('/api/note/getNote/' + id)
             .subscribe(
-                note => this.update = note,
+                note => this.active = note,
                 err => this.snacker.sendErrorMessage(err)
             );
     }
 
     createNote() {
-        this.coreApi.post('/api/note/createNote', JSON.stringify(this.create))
+        this.coreApi.post<number>('/api/note/createNote', JSON.stringify(this.active))
             .subscribe(
-                () => {
-                    this.snacker.sendSuccessMessage(`${this.create.title} successfully created`);
-                    this.create = new Note();
+                id => {
+                    this.snacker.sendSuccessMessage(`${this.active.title} successfully saved`);
                     this.getNotes();
+                    this.getNote(id);
                     if (this.identity.authenticated) {
                         this.getUserNotes();
                     }
@@ -93,10 +120,10 @@ export class NoteService {
     }
 
     updateNote() {
-        this.coreApi.post('/api/note/updateNote', JSON.stringify(this.update))
+        this.coreApi.post('/api/note/updateNote', JSON.stringify(this.active))
             .subscribe(
                 () => {
-                    this.snacker.sendSuccessMessage(`${this.update.title} successfully updated`);
+                    this.snacker.sendSuccessMessage(`${this.active.title} successfully saved`);
                     this.getNotes();
                     if (this.identity.authenticated) {
                         this.getUserNotes();

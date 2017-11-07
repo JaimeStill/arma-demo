@@ -53,9 +53,10 @@ namespace arma_demo.web.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task CreateNote([FromBody]NoteModel model)
+        public async Task<int> CreateNote([FromBody]NoteModel model)
         {
-            await db.CreateNote(model);
+            model.user.id = manager.CurrentUser.id;
+            return await db.CreateNote(model);
         }
 
         [HttpPost("[action]")]

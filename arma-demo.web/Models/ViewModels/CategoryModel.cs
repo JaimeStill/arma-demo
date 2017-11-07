@@ -5,13 +5,10 @@ using System.Threading.Tasks;
 
 namespace arma_demo.web.Models.ViewModels
 {
-    public class NoteModel
+    public class CategoryModel
     {
         public int id { get; set; }
-        public string title { get; set; }
-        public string value { get; set; }
+        public string name { get; set; }
         public bool isDeleted { get; set; }
-        public UserModel user { get; set; }
-        public CategoryModel category { get; set; }
     }
 }

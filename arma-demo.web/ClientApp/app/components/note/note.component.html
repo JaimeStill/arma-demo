@@ -1,0 +1,23 @@
+<h2 mat-dialog-title *ngIf="!(data.editing)">New Note</h2>
+<h2 mat-dialog-title *ngIf="data.editing">Update Note</h2>
+<mat-dialog-content class="mat-typography">
+    <div fxLayout="column" fxLayoutAlign="start stretch">
+        <section fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-form-field fxFlex>
+                <input matInput placeholder="Title" [(ngModel)]="note.active.title">
+            </mat-form-field>
+            <mat-form-field fxFlex>
+                <mat-select placeholder="Category" [(ngModel)]="note.active.category.id">
+                    <mat-option *ngFor="let c of category.categories | async" [value]="c.id">{{c.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+        <mat-form-field class="note">
+            <textarea matInput placeholder="Note" [(ngModel)]="note.active.value" rows="5"></textarea>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button color="warn" mat-button mat-dialog-close (click)="note.resetNote()">Cancel</button>
+    <button color="primary" mat-button (click)="saveNote()">Save</button>
+</mat-dialog-actions>

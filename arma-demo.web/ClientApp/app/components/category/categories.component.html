@@ -1,0 +1,27 @@
+<mat-toolbar>New Category</mat-toolbar>
+<section>
+    <mat-form-field>
+        <input matInput placeholder="Category" [(ngModel)]="category.create.name">
+    </mat-form-field>
+</section>
+<button class="input-button" mat-button color="primary" (click)="category.createCategory()">Create</button>
+<mat-toolbar color="primary">
+    <span fxFlex>Categories</span>
+    <button mat-button (click)="showRecycleBin()" *ngIf="category.deletedCategories.value.length > 0">
+        <mat-icon>delete</mat-icon> Recycle Bin
+    </button>
+</mat-toolbar>
+<div class="container" *ngIf="category.categories.value.length > 0" fxLayout="row" fxLayoutWrap fxLayoutAlign="start stretch" fxLayoutGap="4px">
+    <section *ngFor="let c of category.categories | async" class="contrast">
+        <mat-form-field>
+            <input matInput [(ngModel)]="c.name">
+        </mat-form-field>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="category.updateCategory(c)">Update</button>
+            <button mat-menu-item (click)="promptDelete(c)">Delete</button>
+        </mat-menu>
+    </section>
+</div>

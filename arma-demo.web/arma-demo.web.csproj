@@ -25,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\search-container\search-container.component.ts" />
+    <None Remove="ClientApp\app\models\category.ts" />
     <None Remove="ClientApp\app\models\user.ts" />
     <None Remove="ClientApp\app\services\identity.service.ts" />
   </ItemGroup>
@@ -34,6 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\search-container\search-container.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\category.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\user.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\identity.service.ts" />
   </ItemGroup>

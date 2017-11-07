@@ -1,0 +1,25 @@
+<mat-toolbar>
+    <span [style.margin-right.px]="15">Notes Demo</span>
+    <button mat-button color="primary" *ngIf="note.deletedNotes.value.length > 0" (click)="openRecycleBin()">
+        <mat-icon>delete</mat-icon> Recycle Bin
+    </button>
+</mat-toolbar>
+<search-container [service]="note">
+    <mat-progress-bar *ngIf="!note.notes.value.length > 0" color="accent" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="note.hasDataSource | async" fxLayout="row" fxLayoutWrap fxLayoutAlign="start stretch" fxLayout.lt-md="column" class="container" fxLayoutGap="4px">
+        <section *ngFor="let n of notes | async" class="contrast hover">
+            <section fxLayout="row" fxLayoutAlign="start center">
+                <h3 fxFlex>{{n.title}}</h3>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="editNote(n)">Edit</button>
+                    <button mat-menu-item (click)="promptDelete(n)">Delete</button>
+                </mat-menu>
+            </section>
+            <p><strong>{{n.category.name}}</strong></p>
+            <p>{{n.value}}</p>
+        </section>
+    </div>
+</search-container>
