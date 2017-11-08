@@ -69,17 +69,19 @@ export class NoteStatsComponent implements AfterViewInit {
                 return `translate(${horz}, ${vert})`;
             });
 
-        legend.append('rect')
+        const rect = legend.append('rect')
             .attr('width', this.legendRectSize)
             .attr('height', this.legendRectSize)
             .style('fill', this.color)
             .style('stroke', this.color);
 
-        legend.append('text')
+        const labels = legend.append('text')
             .attr('x', this.legendRectSize + this.legendSpacing)
             .attr('y', this.legendRectSize - this.legendSpacing)
             .text((d) => d);
 
         legend.exit().remove();
+        rect.exit().remove();
+        labels.exit().remove();
     }
 }
