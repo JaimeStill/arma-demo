@@ -40,6 +40,25 @@ namespace arma_demo.web.Models.Extensions
             var model = await db.Notes.SetNoteIncludes().Where(x => !x.IsDeleted).SelectNotes();
             return model.AsEnumerable();
         }
+        
+        public static async Task<List<NoteStat>> GetNoteStats(this AppDbContext db)
+        {
+            var categories = db.Notes.Include(x => x.Category).Where(x => !x.IsDeleted).Select(x => x.Category).Distinct();
+            var model = new List<NoteStat>();
+
+            await categories.ForEachAsync(async cat =>
+            {
+                var stat = new NoteStat
+                {
+                    category = cat.Name,
+                    count = await db.Notes.Where(x => x.CategoryId == cat.Id && !x.IsDeleted).CountAsync()
+                };
+
+                model.Add(stat);
+            });
+
+            return model;
+        }
 
         public static async Task<IEnumerable<NoteModel>> GetUserNotes(this AppDbContext db, int userId)
         {

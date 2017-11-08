@@ -30,6 +30,12 @@ namespace arma_demo.web.Controllers
             return await db.GetNotes();
         }
 
+        [HttpGet("[action]")]
+        public async Task<List<NoteStat>> GetNoteStats()
+        {
+            return await db.GetNoteStats();
+        }
+
         [HttpPost("[action]")]
         public async Task<IEnumerable<NoteModel>> GetUserNotes([FromBody]int id)
         {

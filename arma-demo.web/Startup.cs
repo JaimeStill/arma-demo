@@ -40,7 +40,7 @@ namespace arma_demo.web
 
             if (Environment.IsDevelopment())
             {
-                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Dev")));
+                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Azure")));
             }
             else
             {

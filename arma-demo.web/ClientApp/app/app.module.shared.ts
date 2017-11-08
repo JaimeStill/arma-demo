@@ -32,6 +32,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
 import { CategoriesComponent } from './components/category/categories.component';
 import { NotesComponent } from './components/note/notes.component';
+import { NoteStatsComponent } from './components/note/note-stats.component';
 import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ChatComponent } from './components/chat/chat.component';
         SidepanelComponent,
         CategoriesComponent,
         NotesComponent,
+        NoteStatsComponent,
         ChatComponent
     ],
     entryComponents: [
@@ -80,6 +82,7 @@ import { ChatComponent } from './components/chat/chat.component';
         IdentityService,
         CategoryService,
         NoteService,
+        AuthGuard,
         { provide: RequestOptions, useClass: NoCacheRequestOptions }
     ]
 })

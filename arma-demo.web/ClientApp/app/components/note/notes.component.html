@@ -4,8 +4,9 @@
         <mat-icon>delete</mat-icon> Recycle Bin
     </button>
 </mat-toolbar>
+<note-stats></note-stats>
 <search-container [service]="note">
-    <mat-progress-bar *ngIf="!note.notes.value.length > 0" color="accent" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar *ngIf="!(note.notes.value.length > 0)" color="accent" mode="indeterminate"></mat-progress-bar>
     <div *ngIf="note.hasDataSource | async" fxLayout="row" fxLayoutWrap fxLayoutAlign="start stretch" fxLayout.lt-md="column" class="container" fxLayoutGap="4px">
         <section *ngFor="let n of notes | async" class="contrast hover">
             <section fxLayout="row" fxLayoutAlign="start center">

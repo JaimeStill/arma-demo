@@ -210,3 +210,7 @@ div[class*="dark-"] mat-paginator.mat-paginator {
 div[class*="dark-"] .contrast-stacked.hover:hover {
     background-color: #404040;
 }
+
+div[class*="dark-"] text {
+    fill: $light-color;
+}

@@ -5,11 +5,13 @@ import { CoreApiService } from './core-api.service';
 import { SnackerService } from './snacker.service';
 import { IdentityService } from './identity.service';
 import { Note } from '../models/note';
+import { NoteStat } from '../models/note-stat';
 import { IContainerService } from '../interfaces/icontainerservice';
 import { ContainerDataSource } from '../datasources/container.datasource';
 
 @Injectable()
 export class NoteService implements IContainerService<Note> {
+    noteStats = new BehaviorSubject<Array<NoteStat>>([]);
     hasDataSource = new BehaviorSubject<boolean>(false);
     dataSource = new BehaviorSubject<ContainerDataSource<Note>>(new ContainerDataSource<Note>());
     notes = new BehaviorSubject<Array<Note>>([]);
@@ -64,6 +66,14 @@ export class NoteService implements IContainerService<Note> {
             );
     }
 
+    getNoteStats() {
+        this.coreApi.get<Array<NoteStat>>('/api/note/getNoteStats')
+            .subscribe(
+                stats => this.noteStats.next(stats),
+                err => this.snacker.sendErrorMessage(err)
+            );
+    }
+
     getUserNotes() {
         if (this.identity.authenticated) {
             this.coreApi.post<Array<Note>>('/api/note/getUserNotes', JSON.stringify(this.identity.user.value.id))
@@ -111,6 +121,7 @@ export class NoteService implements IContainerService<Note> {
                     this.snacker.sendSuccessMessage(`${this.active.title} successfully saved`);
                     this.getNotes();
                     this.getNote(id);
+                    this.getNoteStats();
                     if (this.identity.authenticated) {
                         this.getUserNotes();
                     }
@@ -125,6 +136,7 @@ export class NoteService implements IContainerService<Note> {
                 () => {
                     this.snacker.sendSuccessMessage(`${this.active.title} successfully saved`);
                     this.getNotes();
+                    this.getNoteStats();
                     if (this.identity.authenticated) {
                         this.getUserNotes();
                     }
@@ -137,6 +149,7 @@ export class NoteService implements IContainerService<Note> {
         this.coreApi.post('/api/note/toggleNoteDeleted', JSON.stringify(note.id))
             .subscribe(
                 () => {
+                    this.getNoteStats();
                     this.getNotes();
                     this.getDeletedNotes();
 

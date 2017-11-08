@@ -17,13 +17,13 @@ namespace arma_demo.web.Models.Authorization
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AuthorizationRequirement requirement)
         {
-            if (manager.CurrentUser.id > 0)
+            if (manager.CurrentUser == null)
             {
-                context.Succeed(requirement);
+                context.Fail();
             }
             else
             {
-                context.Fail();
+                context.Succeed(requirement);
             }
 
             return Task.CompletedTask;

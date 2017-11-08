@@ -16,6 +16,7 @@ const treeShakableModules = [
     '@angular/platform-browser-dynamic',
     '@angular/router',
     '@aspnet/signalr-client',
+    'd3',
     'hammerjs',
     'zone.js',
 ];
